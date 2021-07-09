@@ -17,9 +17,11 @@ while True:
 
     for id in ids:
         conn.request('GET', '/b/thread/' + id)
+        resp = conn.getresponse()
 
-        with open('serve/thread/' + id + '.html', 'wb') as thread:
-            thread.write(conn.getresponse().read())
+        if resp.status == 200:
+            with open('serve/thread/' + id + '.html', 'wb') as thread:
+                thread.write(resp.read())
 
     conn.close()
     time.sleep(120)
