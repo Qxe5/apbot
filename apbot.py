@@ -24,6 +24,7 @@ while True:
         if resp.status == 200:
             with open('serve/thread/' + id + '.html', 'wb') as thread:
                 thread.write(resp.read())
+                print(id + ' logged')
 
     conn.close()
     time.sleep(120)
