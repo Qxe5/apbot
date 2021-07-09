@@ -1,6 +1,7 @@
 import http.client
 import json
 import time
+import os.path
 
 while True:
     conn = http.client.HTTPSConnection('boards.4chan.org')
@@ -22,9 +23,15 @@ while True:
         resp = conn.getresponse()
 
         if resp.status == 200:
-            with open('serve/thread/' + id + '.html', 'wb') as thread:
+            filepath = 'serve/thread/' + id + '.html'
+
+            if not os.path.exists(filepath):
+                print('Creating ' + id + ' ...')
+            else:
+                print('Updating ' + id + ' ...')
+
+            with open(filepath, 'wb') as thread:
                 thread.write(resp.read())
-                print(id + ' logged')
 
     conn.close()
     time.sleep(120)
