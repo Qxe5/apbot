@@ -12,7 +12,9 @@ while True:
 
     ids = []
     for thread in resp:
-        if 'loli' in resp.get(thread).get('teaser').lower():
+        post = resp.get(thread).get('teaser').lower()
+
+        if 'loli' in post or 'shota' in post:
             ids.append(thread)
 
     for id in ids:
