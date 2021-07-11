@@ -36,5 +36,6 @@ while True:
                 with open(filepath, 'wb') as thread:
                     thread.write(resp.read())
 
-    conn.close()
+        conn.close()
+
     time.sleep(120)
